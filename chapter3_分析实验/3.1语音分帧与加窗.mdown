@@ -74,11 +74,11 @@ def enframe(x, win, inc=None):
         inc = nlen
     nf = (nx - nlen + inc) // inc
     frameout = np.zeros((nf, nlen))
-    indf = np.multiply(inc, np.array([i for i in range(nf)]))
+    indf = np.multiply(inc, np.array([i for i in range(nf)]))    # 确认每一帧的起始下标
     for i in range(nf):
-        frameout[i, :] = x[indf[i]:indf[i] + nlen]
+        frameout[i, :] = x[indf[i]:indf[i] + nlen]               # 吧音频按照分帧信息预先切分
     if isinstance(win, list):
-        frameout = np.multiply(frameout, np.array(win))
+        frameout = np.multiply(frameout, np.array(win))          # 切分好的音频信号分别乘上窗函数
     return frameout
 
 
